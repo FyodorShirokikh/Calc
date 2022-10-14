@@ -10,10 +10,18 @@ public class Main {
        st = scanner.nextLine();
        st = st.replace(" ", "");
 
-       int plus = st.indexOf("+");
-       if (plus > 0) {
+       int plus = st.indexOf("+"); int minus = st.indexOf("-"); int umnoj = st.indexOf("*"); int delen = st.indexOf("/");
+       if ((plus == -1) && (minus == -1) && (umnoj == -1) && (delen == -1)) {
+           throw new RuntimeException("т.к. строка не является математической операцией");
+       }
+       if (plus >= 0) {
             oper = st.split("\\+");
-
+            if (oper.length <= 1) {
+                throw new RuntimeException("т.к. строка не является математической операцией");
+            }
+            if (oper.length > 2) {
+                throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            }
             if ( ifArabic(oper[0]) && ifArabic(oper[1]) ) {
                ans = Integer.parseInt(oper[0]) + Integer.parseInt(oper[1]);
                System.out.println(ans);
@@ -29,10 +37,14 @@ public class Main {
                 throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
             }
        }
-       int minus = st.indexOf("-");
-       if (minus > 0) {
-           oper = st.split("\\-");
-
+       if (minus >= 0) {
+           oper = st.split("-");
+           if (oper.length <= 1) {
+               throw new RuntimeException("т.к. строка не является математической операцией");
+           }
+           if (oper.length > 2) {
+               throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+           }
            if ( ifArabic(oper[0]) && ifArabic(oper[1]) ) {
                ans = Integer.parseInt(oper[0]) - Integer.parseInt(oper[1]);
                System.out.println(ans);
@@ -52,10 +64,14 @@ public class Main {
                throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
            }
        }
-       int umnoj = st.indexOf("*");
-       if (umnoj > 0) {
+       if (umnoj >= 0) {
            oper = st.split("\\*");
-
+           if (oper.length <= 1) {
+               throw new RuntimeException("т.к. строка не является математической операцией");
+           }
+           if (oper.length > 2) {
+               throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+           }
            if ( ifArabic(oper[0]) && ifArabic(oper[1]) ) {
                ans = Integer.parseInt(oper[0]) * Integer.parseInt(oper[1]);
                System.out.println(ans);
@@ -70,10 +86,15 @@ public class Main {
            if (umnoj_next > 0) {
                throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
            }
-       }int delen = st.indexOf("/");
-       if (delen > 0) {
-           oper = st.split("\\/");
-
+       }
+       if (delen >= 0) {
+           oper = st.split("/");
+           if (oper.length <= 1) {
+               throw new RuntimeException("т.к. строка не является математической операцией");
+           }
+           if (oper.length > 2) {
+               throw new RuntimeException("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+           }
            if ( ifArabic(oper[0]) && ifArabic(oper[1]) ) {
                try {
                    ans = Integer.parseInt(oper[0]) / Integer.parseInt(oper[1]);
@@ -94,7 +115,7 @@ public class Main {
            }
        }
     }
-    public static String intToRoman(int a) {
+    private static String intToRoman(int a) {
         int[] values =           {1000,900,500,400, 100, 90, 50,  40, 10,  9,   5,  4,   1};
         String[] romanLiterals = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
         StringBuilder roman = new StringBuilder();
@@ -144,11 +165,9 @@ public class Main {
     }
 
     private static boolean ifArabic(String s){
-        boolean Arabic= Arrays.asList("1","2","3","4","5","6","7","8","9","10").contains(s);
-        return Arabic;
+        return Arrays.asList("1","2","3","4","5","6","7","8","9","10").contains(s);
     }
     private static boolean ifRoman(String s) {
-        boolean Roman= Arrays.asList("I","II","III","IV","V","VI","VII","VIII","IX","X").contains(s);
-        return Roman;
+        return Arrays.asList("I","II","III","IV","V","VI","VII","VIII","IX","X").contains(s);
     }
     }
