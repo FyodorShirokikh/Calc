@@ -115,7 +115,7 @@ public class Main {
            }
        }
     }
-    private static String intToRoman(int a) {
+    static String intToRoman(int a) {
         int[] values =           {1000,900,500,400, 100, 90, 50,  40, 10,  9,   5,  4,   1};
         String[] romanLiterals = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
         StringBuilder roman = new StringBuilder();
@@ -128,7 +128,7 @@ public class Main {
         return roman.toString();
     }
 
-    private static int romanToInt(String s) {
+    static int romanToInt(String s) {
         int i = 0;
         switch (s) {
             case "I":
@@ -164,10 +164,10 @@ public class Main {
         return i;
     }
 
-    private static boolean ifArabic(String s){
+    static boolean ifArabic(String s){
         return Arrays.asList("1","2","3","4","5","6","7","8","9","10").contains(s);
     }
-    private static boolean ifRoman(String s) {
+    static boolean ifRoman(String s) {
         return Arrays.asList("I","II","III","IV","V","VI","VII","VIII","IX","X").contains(s);
     }
     }
